@@ -3,8 +3,8 @@
 /**
  * _fork - function that diverges processes
  * @d: add test
- * @av: argument variable
- * @args: argument
+ * @av: argument variables
+ * @args: arguments
  * @str: user's command
  * @id: process identification
  * @env: environment variable
