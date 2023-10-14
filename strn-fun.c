@@ -1,22 +1,6 @@
 #include "shell.h"
 
 /**
- * _strlen - returns the length of a string
- * @str: string to be returned
- * Return: length of the string
- */
-
-int _strlen(char *str)
-{
-	int k;
-	int num = 0;
-
-	for (k = 0 ; str[k] != '\0' ; k++)
-		num++;
-	return (num);
-}
-
-/**
  * _strcpy - copies the string pointed to by dep
  * @arr: copy destination
  * @dep: copy source
@@ -121,7 +105,7 @@ char *_strncat(char *A, char *B, int num)
 *@c: counts the number ofcharacter
 *Return: always (zero)
 */
-size_t _strncmp( char *s1, char *s2, size_t c)
+size_t _strncmp(char *s1, char *s2, size_t c)
 {
 	size_t a, b;
 
@@ -129,7 +113,7 @@ size_t _strncmp( char *s1, char *s2, size_t c)
 	{
 		a = s1[b] - s2[b];
 
-		if ( a != 0)
+		if (a != 0)
 		{
 			return (a);
 		}

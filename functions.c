@@ -70,3 +70,18 @@ char *_strtok(char *str, const char *delimiter)
 	i = *i ? *i = 0, i + 1 : 0;
 	return (str);
 }
+
+/**
+*_strlen - returns the length of a string
+*@str: string to be returned
+*Return: length of the string
+*/
+int _strlen(char *str)
+{
+	int k;
+	int num = 0;
+
+	for (k = 0; str[k] != '\0'; k++)
+		num++;
+	return (num);
+}
