@@ -18,8 +18,8 @@ int _strlen(char *str)
 
 /**
  * _strcpy - copies the string pointed to by dep
- * @arr: copy to
- * @dep: copy from
+ * @arr: copy destination
+ * @dep: copy source
  * Return: string
  */
 
@@ -112,4 +112,27 @@ char *_strncat(char *A, char *B, int num)
 	}
 	B[x] = '\0';
 	return (B);
+}
+
+/**
+*_strncmp - it compares strings
+*@s1: first string
+*@s2: second string
+*@c: counts the number ofcharacter
+*Return: always (zero)
+*/
+size_t _strncmp( char *s1, char *s2, size_t c)
+{
+	size_t a, b;
+
+	for (b = 0; s1[b] != '\0' && b < c; b++)
+	{
+		a = s1[b] - s2[b];
+
+		if ( a != 0)
+		{
+			return (a);
+		}
+	}
+	return (0);
 }
