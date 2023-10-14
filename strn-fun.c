@@ -18,8 +18,8 @@ int _strlen(char *str)
 
 /**
  * _strcpy - copies the string pointed to by dep
- * @arr: copy to
- * @dep: copy from
+ * @arr: copy destination
+ * @dep: copy source
  * Return: string
  */
 
