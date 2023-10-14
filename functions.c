@@ -70,3 +70,27 @@ char *_strtok(char *str, const char *delimiter)
 	i = *i ? *i = 0, i + 1 : 0;
 	return (str);
 }
+
+/**
+ * _strncmp - function that compares two different strings
+ * @str1: first string
+ * @str2: second string
+ * @c: number of character in the strings
+ * Return: difference between the compared strings
+ */
+
+size_t _strncmp(char *str1, char *str2, size_t c)
+{
+	size_t x, y;
+
+	for (y = 0; str1[y] != '\0' && y < c ; y++)
+	{
+		x = str1[y] - str2[y];
+
+		if (x != 0)
+		{
+			return (x);
+		}
+	}
+	return (0);
+}
