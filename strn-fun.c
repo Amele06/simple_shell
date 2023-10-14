@@ -119,7 +119,7 @@ char *_strncat(char *A, char *B, int num)
 *@s1: first string
 *@s2: second string
 *@c: counts the number ofcharacter
-*Return: always zero
+*Return: always (zero)
 */
 size_t _strncmp( char *s1, char *s2, size_t c)
 {
