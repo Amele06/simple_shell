@@ -1,40 +1,40 @@
 #include "shell.h"
 
 /**
- *main - the main shell function
- *@ac: counts the number of arguments
- *@av: holds strings of arrays
+ *main - shell function
+ *@ac: counts the number of argumentsin a variable
+ *@av: holds strings of array
  *@environ: contains environment variable
  *Return: returns 0 on success
  */
 
 int main(int ac, char **av, char **environ)
 {
-	char *cmd = NULL, **usercmd = NULL;
-	int pv = 0, _exit = 0, k = 0;
+	char *cmds = NULL, **usercmd = NULL;
+	int p = 0, _exit = 0, u = 0;
 	(void)ac;
 
 	while (1)
 	{
-		cmd = _getline();
-		if (cmd)
+		cmds = _getline();
+		if (cmds)
 		{
-			pv++;
-			usercmd = token(cmd);
+			p++;
+			usercmd = token(cmds);
 			if (!usercmd)
 			{
-				free(cmd);
+				free(cmds);
 				continue;
 			}
 		if (!_strcmp(usercmd[0], "exit"))
-			exit_cmds(av[0], usercmd, cmd, _exit);
+			exit_cmds(av[0], usercmd, cmds, _exit);
 		if (!_strcmp(usercmd[0], "env"))
 			_getenviron(environ);
 		else
 		{
-			k = pathfind(&usercmd[0], environ);
-			_exit = _fork(usercmd, av, environ, cmd, pv, k);
-			if (k == 0)
+			u = pathfind(&usercmd[0], environ);
+			_exit = _fork(usercmd, av, environ, cmds, p, u);
+			if (u == 0)
 				free(usercmd[0]);
 		}
 		free(usercmd);
@@ -46,7 +46,7 @@ int main(int ac, char **av, char **environ)
 				write(STDOUT_FILENO, "\n", 1);
 			exit(_exit);
 		}
-		free(cmd);
+		free(cmds);
 	}
 	return (_exit);
 }

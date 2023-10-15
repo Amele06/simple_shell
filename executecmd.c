@@ -7,11 +7,11 @@
 */
 int is_digit(const char *prt)
 {
-	unsigned int j;
+	unsigned int a;
 
-	for (j = 0; prt[j]; j++)
+	for (a = 0; prt[a]; a++)
 	{
-		if (prt[j] < 48 || prt[j] > 57)
+		if (prt[a] < 48 || prt[a] > 57)
 			return (0);
 	}
 	return (1);
@@ -60,13 +60,13 @@ void exit_cmds(char *av, char **args, char *ptr, int _exit)
 */
 void _getenviron(char **env)
 {
-	size_t j = 0;
+	size_t i = 0;
 
-	while (env[j])
+	while (env[i])
 	{
-		write(STDOUT_FILENO, env[j], _strlen(env[j]));
+		write(STDOUT_FILENO, env[i], _strlen(env[i]));
 		write(STDOUT_FILENO, "\n", 1);
-		j++;
+		i++;
 	}
 }
 
@@ -77,21 +77,21 @@ void _getenviron(char **env)
 */
 char *_getpath(char **environ)
 {
-	size_t var, j, c;
-	char *path = NULL;
+	size_t var, j, b;
+	char *pat = NULL;
 
 	for (j = 0; _strncmp(environ[j], "PATH", 5); j++)
 	{};
 	if (environ[j] == NULL)
 		return (NULL);
-	for (c = 5; environ[j][var]; var++, c++)
+	for (b = 5; environ[j][var]; var++, b++)
 	{};
-	path = malloc(sizeof(char) * (c + 1));
+	pat = malloc(sizeof(char) * (b + 1));
 
-	if (path == NULL)
+	if (pat == NULL)
 		return (NULL);
-	for (var = 5, c = 0; environ[j][var]; var++, c++)
-		path[c] = environ[j][var];
-	path[c] = '\0';
-	return (path);
+	for (var = 5, b = 0; environ[j][var]; var++, b++)
+		pat[b] = environ[j][var];
+	pat[b] = '\0';
+	return (pat);
 }
