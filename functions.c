@@ -2,86 +2,86 @@
 
 /**
 *_strchar - find the first appearnce of c
-*@s: string receive
+*@str: string receive
 *@ch: characters to the string
 *Return: a pointer
 */
-char *_strchar(const char *s, int ch)
+char *_strchar(const char *str, int ch)
 {
-	while (*s != (char)ch)
-		if (!*s++)
+	while (*str != (char)ch)
+		if (!*str++)
 			return (0);
-	return ((char *)s);
+	return ((char *)str);
 }
 /**
 *_strsp - finds the max length of a string
-*@s1: string to find the max length
-*@s2: string containing delimiters
+*@str1: string to find the max length
+*@str2: string containing delimiters
 *Return: length
 */
-size_t _strsp(const char *s1, const char *s2)
+size_t _strsp(const char *str1, const char *str2)
 {
 	size_t t = 0;
 
-	while (*s1 && _strchar(s2, *s1++))
+	while (*str1 && _strchar(str2, *str1++))
 		t++;
 	return (t);
 }
 
 /**
 *_strcsp - finds the length of the max length of a string/arguments
-*@s1: string to find its max length
-*@s2: string for comparism
+*@str1: string to find its max length
+*@str2: string for comparism
 *Return: length
 */
-size_t _strcsp(const char *s1, const char *s2)
+size_t _strcsp(const char *str1, const char *str2)
 {
 	size_t t = 0;
 
-	while (*s1)
+	while (*str1)
 	{
-		if (_strchar(s2, *s1))
+		if (_strchar(str2, *str1))
 			return (t);
-		s1++;
+		str1++;
 		t++;
 	}
 	return (t);
 }
 
 /**
-*_strtok - a function that tokenizes the supplied token
+*_strtok - a function that tokenizes strings
 *@str: string to be tokenized
-*@delimiter: characters that separate strings
-*Return: tokens
+*@delimiter: characters to be used for tokenization of strings
+*Return: tokenized string
 *
 */
 char *_strtok(char *str, const char *delimiter)
 {
-	static char *i;
+	static char *j;
 
 	if (str)
-		i = str;
-	else if (!i)
+		j = str;
+	else if (!j)
 		return (0);
-	str = i + _strsp(i, delimiter);
-	i = str + _strcsp(str, delimiter);
-	if (i == str)
-		return (i = 0);
-	i = *i ? *i = 0, i + 1 : 0;
+	str = j + _strsp(j, delimiter);
+	j = str + _strcsp(str, delimiter);
+	if (j == str)
+		return (j = 0);
+	j = *j ? *j = 0, j + 1 : 0;
 	return (str);
 }
 
 /**
-*_strlen - returns the length of a string
+*_strlen - length of a string
 *@str: string to be returned
 *Return: length of the string
 */
 int _strlen(char *str)
 {
-	int k;
-	int num = 0;
+	int u;
+	int number = 0;
 
-	for (k = 0; str[k] != '\0'; k++)
-		num++;
-	return (num);
+	for (u = 0; str[u] != '\0'; u++)
+		number++;
+	return (number);
 }

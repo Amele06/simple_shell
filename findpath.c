@@ -1,15 +1,15 @@
 #include "shell.h"
 
 /**
-*pathfind - contains the PATH to environment variables
+*pathfind - locates the PATH to environment variables
 *@args: arguments
 *@environ: contains environment variables
-*Return: PATH
+*Return: always PATH
 */
 
 int pathfind(char **args, char **environ)
 {
-	char *tokz = NULL, *full_path = NULL, *path_t = NULL;
+	char *tok = NULL, *fpath = NULL, *path_t = NULL;
 	size_t v, cmd;
 	struct stat stat_ptr;
 
@@ -18,20 +18,20 @@ int pathfind(char **args, char **environ)
 	path_t = _getpath(environ);
 	if (!path_t)
 		return (-1);
-	tokz = _strtok(path_t, ":");
+	tok = _strtok(path_t, ":");
 	cmd = _strlen(*args);
-	while (tokz)
+	while (tok)
 	{
-		v = _strlen(tokz);
-		full_path = malloc(sizeof(char) * (v + cmd + 2));
-		if (!full_path)
+		v = _strlen(tok);
+		fpath = malloc(sizeof(char) * (v + cmd + 2));
+		if (!fpath)
 		{
-			*args = full_path;
+			*args = fpath;
 			free(path_t);
 			return (0);
 		}
-		free(full_path);
-		tokz = _strtok(NULL, ":");
+		free(fpath);
+		tok = _strtok(NULL, ":");
 	}
 	free(path_t);
 	return (-1);
