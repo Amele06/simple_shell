@@ -17,19 +17,27 @@ int main(int ac, char **av, char **environ)
 	while (1)
 	{
 		cmds = _getline();
-		if (cmds)
+		if (cmds == NULL)
 		{
-			p++;
-			usercmd = token(cmds);
-			if (!usercmd)
-			{
-				free(cmds);
-				continue;
-			}
-		if (!_strcmp(usercmd[0], "exit"))
+			if (isatty(STDIN_FILENO))
+				write(STDOUT_FILENO, "\n", 1);
+			exit(_exit);
+		}
+		p++;
+		usercmd = token(cmds);
+		if (usercmd == NULL)
+		{
+			free(cmds);
+			continue;
+		}
+		if (_strcmp(usercmd[0], "exit") == 0)
+		{
 			exit_cmds(av[0], usercmd, cmds, _exit);
-		if (!_strcmp(usercmd[0], "env"))
+		}
+		else if (_strcmp(usercmd[0], "env") == 0)
+		{
 			_getenviron(environ);
+		}
 		else
 		{
 			u = pathfind(&usercmd[0], environ);
@@ -38,14 +46,6 @@ int main(int ac, char **av, char **environ)
 				free(usercmd[0]);
 		}
 		free(usercmd);
-
-		}
-		else
-		{
-			if (isatty(STDIN_FILENO))
-				write(STDOUT_FILENO, "\n", 1);
-			exit(_exit);
-		}
 		free(cmds);
 	}
 	return (_exit);
